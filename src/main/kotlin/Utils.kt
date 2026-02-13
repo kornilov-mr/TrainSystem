@@ -51,7 +51,7 @@ fun readAllStringWithTrainSystemDescription(
     val numTracks = input[1].toInt()
 
     (0 until numStops + numTracks + 1)
-        .forEach { i ->
+        .forEach { _ ->
             strings.add(reader.readLine())
         }
     return strings
