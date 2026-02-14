@@ -2,6 +2,7 @@ package org.example.trainSystem.display
 
 import org.example.trainSystem.TrainStop
 import org.graphstream.graph.implementations.SingleGraph
+import org.graphstream.ui.view.Viewer
 import java.io.File
 
 
@@ -42,7 +43,8 @@ class TrainSystemDisplay(
                 graph.addEdge(stop.id.toString() + "-" + child.id.toString(), stop.id.toString(), child.id.toString(),true)
             }
         }
-        graph.display()
+        val viewer = graph.display()
+        viewer.setCloseFramePolicy(Viewer.CloseFramePolicy.EXIT)
         println(toString())
     }
     fun startUpdateThread(){

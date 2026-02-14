@@ -10,5 +10,4 @@ fun main() {
     println(trainSystem.printCanCargo())
     trainSystem.systemDisplay.displayTrainSystem()
     trainSystem.systemDisplay.startUpdateThread()
-    Thread.sleep(100000)
 }
