@@ -17,13 +17,17 @@ Determine, for each station, which cargo types might be on a train when it arriv
 If the cargo type is set to -1, it means that the station doesn't load or unload any cargo.
 ### Input Example
 
-* *[simple_train_system](src/main/resources/simple_train_system.txt)*
-* *[simple_train_system_with_a_loop](src/main/resources/simple_train_system_with_loop.txt)*
+* *[simple_train_system](src/main/resources/Examples/simple_train_system.txt)*
+  ![Train System Animation](src/main/resources/gifs/simple_train_system.gif)
+
+
+* *[simple_train_system_with_a_loop](src/main/resources/Examples/simple_train_system_with_loop.txt)*
+  ![Train System Animation](src/main/resources/gifs/simple_train_system_with_a_loop.gif)
 
 ## How to run
 Solution is a kotlin project with entry point in *[Main.kt](src/main/kotlin/Main.kt)*
 
-Run gradle task of the gradle build file *[build.gradle.kts](build.gradle.kts)*
+Run gradle task of the gradle build file *[build.gradle](build.gradle)*
 
 ## Tests
 There are 5 tests cases in the project.
