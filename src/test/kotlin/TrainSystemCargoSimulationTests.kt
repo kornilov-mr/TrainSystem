@@ -1,4 +1,4 @@
-import org.example.TrainSystem
+import org.example.trainSystem.TrainSystem
 import org.example.readAllStringWithTrainSystemDescription
 import java.io.File
 import kotlin.test.Test
@@ -18,7 +18,6 @@ class TrainSystemCargoSimulationTests {
         val input = readAllStringWithTrainSystemDescription(simpleTrainSystemFile)
         val trainSystem = TrainSystem.constructTrainSystemFromInput(input)
         trainSystem.runCargoSimulation()
-        println(trainSystem.printCanCargo())
         assert(trainSystem.printCanCargo() == expected)
     }
     @Test

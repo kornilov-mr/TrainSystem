@@ -1,0 +1,22 @@
+node {
+    fill-color: lightblue;
+    size: 40px;
+    text-size: 32;
+    text-alignment: above;
+}
+edge {
+    arrow-shape: arrow;
+    fill-color: gray;
+}
+graph {
+    padding: 300px;
+}
+node.active {
+    fill-color: orange;
+}
+
+
+node.finished {
+    fill-color: lightgray;
+}
+

@@ -1,5 +1,8 @@
-package org.example
+package org.example.trainSystem
 
+import org.example.fastTreeSetContainsAll
+import org.example.trainSystem.display.TrainSystemDisplay
+import org.graphstream.graph.implementations.SingleGraph
 import java.util.LinkedList
 import java.util.Queue
 import java.util.TreeSet
@@ -13,10 +16,14 @@ import java.util.TreeSet
  *            Initialized empty, will be filled during cargo simulation
  * @property hasSimulatedCargo - Flag which indicates if cargo simulation has been run,
  *            will throw an exception if cargo simulation has not been run yet but the user tries to print it
+ * @property algorithmSteps - List of steps taken during cargo simulation, contains pairs of stop ids
+ *            and cargo that can be delivered to that stop
  */
 class TrainSystem(private val stops: Map<Int, TrainStop>, private val start: TrainStop) {
 
     private val canCargo: MutableMap<Int, TreeSet<Int>> = mutableMapOf()
+    private val algorithmSteps: MutableList<Pair<Int, List<Int>>> = mutableListOf()
+    public val systemDisplay: TrainSystemDisplay = TrainSystemDisplay(stops, start, algorithmSteps)
     private var hasSimulatedCargo = false
 
     companion object {
@@ -67,6 +74,7 @@ class TrainSystem(private val stops: Map<Int, TrainStop>, private val start: Tra
      * Time complexity: O(V * E), where V - number of stops, E - number of edges
      */
     fun runCargoSimulation() {
+        algorithmSteps.clear();
         for (stop in stops.values) {
             this.canCargo[stop.id] = TreeSet()
         }
@@ -82,9 +90,9 @@ class TrainSystem(private val stops: Map<Int, TrainStop>, private val start: Tra
                     newCargo.remove(child.unloads)
 
                 val prevCargo = this.canCargo[child.id]!!
-                if (!fastTreeSetContainsAll(prevCargo,newCargo) || prevCargo.isEmpty()) {
+                if (!fastTreeSetContainsAll(prevCargo, newCargo) || prevCargo.isEmpty()) {
                     this.canCargo[child.id]!!.addAll(newCargo)
-
+                    algorithmSteps.add(Pair(child.id, newCargo.toList()))
                     stopsQueue.add(Pair(child, newCargo))
                 }
             }
@@ -99,6 +107,8 @@ class TrainSystem(private val stops: Map<Int, TrainStop>, private val start: Tra
                 "From start station with id ${start.id} can deliver cargo to:" +
                 "${canCargo.map { "\n${it.key} ->(Cargo) ${it.value.joinToString(", ")}" }}"
     }
+
+
 
     override fun toString(): String {
         return "TrainSystem(AmountOfStops=${stops.size}, start_id=${start.id}," +

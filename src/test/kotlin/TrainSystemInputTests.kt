@@ -1,4 +1,4 @@
-import org.example.TrainSystem
+import org.example.trainSystem.TrainSystem
 import org.example.readAllStringWithTrainSystemDescription
 import java.io.File
 import kotlin.test.Test
